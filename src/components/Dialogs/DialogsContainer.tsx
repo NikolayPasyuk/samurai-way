@@ -1,29 +1,29 @@
 import React from 'react';
-import {StoreType} from '../../redux/store';
 import {sendMessageAC, updateNewMessageBodyAC} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
+import StoreContext from '../../StoreContext';
 
+const DialogsContainer = () => {
 
-type DialogsPropsType = {
-    store: StoreType
-}
+    return <StoreContext.Consumer>
+        {
+            (store) => {
 
+                const state = store.getState().dialogsPage
 
-function DialogsContainer(props: DialogsPropsType) {
-    const state = props.store.getState().dialogsPage
+                const onSendMessageClick = () => {
+                    store.dispatch(sendMessageAC())
+                }
 
-    const onSendMessageClick = () => {
-        props.store.dispatch(sendMessageAC())
-    }
-
-    const onNewMessageChange = (body: string) => {
-        props.store.dispatch(updateNewMessageBodyAC(body))
-    }
-
-    return <Dialogs updateNewMessageBody={onNewMessageChange}
-                    onSendMessage={onSendMessageClick}
-                    dialogsPage={state}
-    />
+                const onNewMessageChange = (body: string) => {
+                    store.dispatch(updateNewMessageBodyAC(body))
+                }
+                return <Dialogs updateNewMessageBody={onNewMessageChange}
+                                onSendMessage={onSendMessageClick}
+                                dialogsPage={state}/>
+            }
+        }
+    </StoreContext.Consumer>
 };
 
 export default DialogsContainer;

@@ -10,6 +10,6 @@ const reducers = combineReducers({
     sidebarPage: sidebarReducer
 })
 
-let store: StoreType = createStore(reducers)
+const store: StoreType = createStore(reducers)
 
 export default store
