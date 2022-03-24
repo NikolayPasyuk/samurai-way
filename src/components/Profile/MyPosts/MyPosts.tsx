@@ -1,7 +1,12 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-import {PotsType} from '../../../redux/store';
+
+export type PotsType = {
+    id: number
+    message: string
+    likesCount: number
+}
 
 type MyPostsPropsType = {
     posts: Array<PotsType>

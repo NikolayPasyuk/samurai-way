@@ -2,8 +2,22 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';
-import {DialogsPageType} from '../../redux/store';
 
+export type DialogsType = {
+    id: number
+    name: string
+}
+
+export type MessagesType = {
+    id: number
+    message: string
+}
+
+export type DialogsPageType = {
+    messages: Array<MessagesType>
+    dialogs: Array<DialogsType>
+    newMessageBody: string
+}
 
 type DialogsPropsType = {
     updateNewMessageBody: (body: string) => void
@@ -39,7 +53,10 @@ function Dialogs(props: DialogsPropsType) {
                     <div>
                         <textarea value={newMessageBody}
                                   onChange={onNewMessageChange}
-                                  placeholder="Enter your message"></textarea></div>
+                                  placeholder="Enter your message">
+
+                        </textarea>
+                    </div>
                     <div>
                         <button onClick={onSendMessageClick}>Send</button>
                     </div>
