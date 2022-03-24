@@ -1,5 +1,3 @@
-import {ActionsTypes} from './store';
-
 export type PotsType = {
     id: number
     message: string
@@ -19,26 +17,26 @@ type InitialStateType = {
     newPostText: string
 }
 
+type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC>
+
 export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
-        case 'ADD_POST': {
-            const newPost = {
-                id: 5,
-                message: state.newPostText,
-                likesCount: 0
+        case 'ADD_POST':
+            return {
+                ...state,
+                posts: [...state.posts, {
+                    id: 5,
+                    message: state.newPostText,
+                    likesCount: 0
+                }],
+                newPostText: ''
             }
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = ''
-            return stateCopy
-        }
-        case 'UPDATE_NEW_TEXT': {
-            const stateCopy = {...state}
-            stateCopy.newPostText = action.newText;
-            return stateCopy
-        }
+        case 'UPDATE_NEW_TEXT':
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         default:
             return state
     }

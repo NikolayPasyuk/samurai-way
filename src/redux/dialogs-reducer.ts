@@ -1,5 +1,3 @@
-import {ActionsTypes} from './store';
-
 export type MessagesType = {
     id: number
     message: string
@@ -10,7 +8,7 @@ export type DialogsType = {
 }
 
 
-const initialState:InitialStateType = {
+const initialState: InitialStateType = {
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'Hi'},
@@ -35,17 +33,23 @@ type InitialStateType = {
     newMessageBody: string
 }
 
+type ActionsTypes = ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageBodyAC>
 
-export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes):InitialStateType => {
+export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
+
     switch (action.type) {
         case 'UPDATE_NEW_MESSAGE_BODY':
-            state.newMessageBody = action.body
-            return state
+            return {
+                ...state,
+                newMessageBody: action.body
+            }
         case 'SEND_MESSAGE':
-            let body = state.newMessageBody
-            state.newMessageBody = ''
-            state.messages.push({id: 6, message: body})
-            return state
+            const body = state.newMessageBody
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, {id: 6, message: body}]
+            }
         default:
             return state
     }
