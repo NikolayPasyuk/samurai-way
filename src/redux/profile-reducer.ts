@@ -6,7 +6,7 @@ export type PotsType = {
     likesCount: number
 }
 
-const initialState:InitialStateType = {
+const initialState: InitialStateType = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
         {id: 2, message: 'It\'s my first post', likesCount: 11},
@@ -15,25 +15,30 @@ const initialState:InitialStateType = {
 }
 
 type InitialStateType = {
-    posts:Array<PotsType>
-    newPostText:string
+    posts: Array<PotsType>
+    newPostText: string
 }
 
 export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
-        case 'ADD_POST':
-            let newPost = {
+        case 'ADD_POST': {
+            const newPost = {
                 id: 5,
                 message: state.newPostText,
                 likesCount: 0
             }
-            state.posts.push(newPost);
-            state.newPostText = ''
-            return state
-        case 'UPDATE_NEW_TEXT':
-            state.newPostText = action.newText;
-            return state
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = ''
+            return stateCopy
+        }
+        case 'UPDATE_NEW_TEXT': {
+            const stateCopy = {...state}
+            stateCopy.newPostText = action.newText;
+            return stateCopy
+        }
         default:
             return state
     }
