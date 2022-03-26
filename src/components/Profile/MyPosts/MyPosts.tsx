@@ -1,19 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
-
-export type PotsType = {
-    id: number
-    message: string
-    likesCount: number
-}
-
-type MyPostsPropsType = {
-    posts: Array<PotsType>
-    newPostText: string
-    updateNewPostText: (text: string) => void
-    addPost: () => void
-}
+import {MyPostsPropsType} from './MyPostsContainer';
 
 function MyPosts(props: MyPostsPropsType) {
 

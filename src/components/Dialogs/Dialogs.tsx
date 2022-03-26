@@ -2,28 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';
-
-export type DialogsType = {
-    id: number
-    name: string
-}
-
-export type MessagesType = {
-    id: number
-    message: string
-}
-
-export type DialogsPageType = {
-    messages: Array<MessagesType>
-    dialogs: Array<DialogsType>
-    newMessageBody: string
-}
-
-type DialogsPropsType = {
-    updateNewMessageBody: (body: string) => void
-    onSendMessage: () => void
-    dialogsPage: DialogsPageType
-}
+import {DialogsPropsType} from './DialogsContainer';
 
 
 function Dialogs(props: DialogsPropsType) {

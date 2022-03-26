@@ -1,43 +1,42 @@
-import {addPostAC, profileReducer, updateNewTextAC} from "./profile-reducer";
-import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
-import {sidebarReducer} from "./sidebar-reducer";
+import {addPostAC,updateNewTextAC} from "./profile-reducer";
+import {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 
-export type PotsType = {
+type PotsType = {
     id: number
     message: string
     likesCount: number
 }
 
-export type DialogsType = {
+type DialogsType = {
     id: number
     name: string
 }
 
-export type MessagesType = {
+type MessagesType = {
     id: number
     message: string
 }
 
-export type DialogsPageType = {
+type DialogsPageType = {
     messages: Array<MessagesType>
     dialogs: Array<DialogsType>
     newMessageBody: string
 }
 
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PotsType>
     newPostText: string
 }
 
-export type SidebarPageType = {}
+type SidebarPageType = {}
 
-export type StatePropsType = {
+type StatePropsType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebarPage: SidebarPageType
 }
 
-export type StoreType = {
+type StoreType = {
     _state: StatePropsType
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
@@ -45,7 +44,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC>
+type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC>
     | ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageBodyAC>
 
 

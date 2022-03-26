@@ -1,21 +1,18 @@
-export type PotsType = {
+export type PostType = {
     id: number
     message: string
     likesCount: number
 }
 
-const initialState: InitialStateType = {
+const initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
         {id: 2, message: 'It\'s my first post', likesCount: 11},
-    ],
+    ] as Array<PostType>,
     newPostText: 'it-kamasutra.com'
 }
 
-type InitialStateType = {
-    posts: Array<PotsType>
-    newPostText: string
-}
+export type InitialStateType = typeof initialState
 
 type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC>
 

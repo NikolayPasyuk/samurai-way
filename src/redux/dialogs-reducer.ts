@@ -6,16 +6,20 @@ export type DialogsType = {
     id: number
     name: string
 }
+export type DialogsPageType = {
+    messages: Array<MessagesType>
+    dialogs: Array<DialogsType>
+    newMessageBody: string
+}
 
-
-const initialState: InitialStateType = {
+const initialState = {
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'Hi'},
         {id: 3, message: 'Hi'},
         {id: 4, message: 'Hi Nick'},
         {id: 5, message: 'How are you?'},
-    ],
+    ] as Array<MessagesType>,
     dialogs: [
         {id: 1, name: 'Nick'},
         {id: 2, name: 'Oleg'},
@@ -23,15 +27,11 @@ const initialState: InitialStateType = {
         {id: 4, name: 'Macks'},
         {id: 5, name: 'Masha'},
         {id: 6, name: 'Andrey'},
-    ],
+    ] as Array<DialogsType>,
     newMessageBody: ''
 }
 
-type InitialStateType = {
-    messages: Array<MessagesType>
-    dialogs: Array<DialogsType>
-    newMessageBody: string
-}
+export type InitialStateType = typeof initialState
 
 type ActionsTypes = ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageBodyAC>
 
