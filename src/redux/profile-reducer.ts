@@ -36,7 +36,27 @@ const initialState = {
         {id: 2, message: 'It\'s my first post', likesCount: 11},
     ] as Array<PostType>,
     newPostText: 'it-kamasutra.com',
-    profile: {} as ProfileType
+    profile: {
+        aboutMe: '',
+        contacts: {
+            facebook: '',
+            website: null,
+            vk: '',
+            twitter: '',
+            instagram: '',
+            youtube: null,
+            github: '',
+            mainLink: null
+        },
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
+        userId: 0,
+        photos: {
+            small: '',
+            large: ''
+        }
+    } as ProfileType
 }
 
 export type InitialStateType = typeof initialState
