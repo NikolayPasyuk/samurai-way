@@ -4,13 +4,39 @@ export type PostType = {
     likesCount: number
 }
 
+export type ContactsType = {
+    facebook: string
+    website: null
+    vk: string
+    twitter: string,
+    instagram: string,
+    youtube: null,
+    github: string,
+    mainLink: null
+}
+
+export type PhotosType = {
+    small: string
+    large: string
+}
+
+export type ProfileType = {
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: PhotosType
+}
+
 const initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
         {id: 2, message: 'It\'s my first post', likesCount: 11},
     ] as Array<PostType>,
     newPostText: 'it-kamasutra.com',
-    profile: {}
+    profile: {} as ProfileType
 }
 
 export type InitialStateType = typeof initialState
@@ -53,7 +79,7 @@ export const addPostAC = () => {
         type: 'ADD_POST'
     } as const
 }
-export const setUserProfile = (profile: any) => {
+export const setUserProfile = (profile: ProfileType) => {
     return {
         type: 'SET_USER_PROFILE',
         profile
