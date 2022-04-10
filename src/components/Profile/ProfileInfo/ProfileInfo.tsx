@@ -1,12 +1,17 @@
-import React from "react";
+import React from 'react';
 import s from './ProfileInfo.module.css'
 import {ProfileType} from '../../../redux/profile-reducer';
+import {Preloader} from '../../common/preloader/Preloader';
 
 type ProfileInfoPropsType = {
-    profile:ProfileType
+    profile: ProfileType
 }
 
-function ProfileInfo(props:ProfileInfoPropsType) {
+function ProfileInfo(props: ProfileInfoPropsType) {
+    if (!props.profile) {
+        return <Preloader/>
+    }
+
     return (
         <div>
             <div>
