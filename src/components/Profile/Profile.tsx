@@ -2,7 +2,12 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 
-function Profile() {
+type ProfilePropsType = {
+    a: number
+    setUserProfile: (profile: null) => void
+}
+
+function Profile(props: ProfilePropsType) {
 
     return (
         <div>
