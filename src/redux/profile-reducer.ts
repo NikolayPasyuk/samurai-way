@@ -10,7 +10,7 @@ const initialState = {
         {id: 2, message: 'It\'s my first post', likesCount: 11},
     ] as Array<PostType>,
     newPostText: 'it-kamasutra.com',
-    profile: null
+    profile: {}
 }
 
 export type InitialStateType = typeof initialState

@@ -4,7 +4,7 @@ import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 
 type ProfilePropsType = {
     a: number
-    setUserProfile: (profile: null) => void
+    setUserProfile: (profile: {}) => void
 }
 
 function Profile(props: ProfilePropsType) {
