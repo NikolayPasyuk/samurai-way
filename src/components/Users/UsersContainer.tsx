@@ -49,9 +49,9 @@ class UsersContainer extends React.Component<UsersPropsType> {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
 
-        getUsers(pageNumber, this.props.pageSize).then(response => {
+        getUsers(pageNumber, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false)
-            this.props.setUsers(response.data.items)
+            this.props.setUsers(data.items)
         })
     }
 
