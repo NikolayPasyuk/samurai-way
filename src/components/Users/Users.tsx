@@ -13,6 +13,7 @@ type UsersPropsType = {
     users: Array<UsersType>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
+    toggleIsFollowingProgress: (isFetching: boolean) => void
 }
 
 export const Users = (props: UsersPropsType) => {
