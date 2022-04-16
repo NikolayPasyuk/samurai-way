@@ -15,6 +15,6 @@ export const getUsers = (currentPage = 1, pageSize = 10) => {
 }
 
 export const getUsers2 = (currentPage = 1, pageSize = 10) => {
-    return axios.get(baseUrl + `users?page=${currentPage}&count=${pageSize}`, {withCredentials: true})
+    return instance.get(baseUrl + `users?page=${currentPage}&count=${pageSize}`)
         .then(response => response.data)
 }
