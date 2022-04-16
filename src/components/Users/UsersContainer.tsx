@@ -6,11 +6,11 @@ import {
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
-    toggleIsFetching, toggleIsFollowingProgress,
+    toggleIsFetching,
+    toggleIsFollowingProgress,
     unfollow,
     UsersType
 } from '../../redux/users-reducer';
-import axios from 'axios';
 import {Users} from './Users';
 import {Preloader} from '../common/preloader/Preloader';
 import {userAPI} from '../../api/api';
@@ -22,7 +22,7 @@ type mapStatePropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgress: boolean
+    followingInProgress: Array<number>
 }
 
 type mapDispatchPropsType = {
@@ -32,7 +32,7 @@ type mapDispatchPropsType = {
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-    toggleIsFollowingProgress: (isFetching: boolean) => void
+    toggleIsFollowingProgress: (isFetching: boolean,id:number) => void
 }
 export type UsersPropsType = mapStatePropsType & mapDispatchPropsType
 
@@ -70,6 +70,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
                    toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+                   followingInProgress={this.props.followingInProgress}
             />
         </>
     }
