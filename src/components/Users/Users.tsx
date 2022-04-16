@@ -45,7 +45,7 @@ export const Users = (props: UsersPropsType) => {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-
+                                props.toggleIsFollowingProgress(true)
                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                     withCredentials: true,
                                     headers: {
@@ -56,6 +56,7 @@ export const Users = (props: UsersPropsType) => {
                                         if (response.data.resultCode === 0) {
                                             props.unfollow(u.id)
                                         }
+                                        props.toggleIsFollowingProgress(false)
                                     })
 
                             }}>Unfollow</button>
