@@ -45,7 +45,7 @@ export const Users = (props: UsersPropsType) => {
                         {u.followed
                             ? <button onClick={() => {
 
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/userId${u.id}`, {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                     withCredentials: true,
                                     headers: {
                                         'API-KEY': 'd0317f6a-b584-4afe-8a81-d7b60d153a6b'
@@ -60,7 +60,7 @@ export const Users = (props: UsersPropsType) => {
                             }}>Unfollow</button>
                             : <button onClick={() => {
 
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/userId${u.id}`, {}, {
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                     withCredentials: true,
                                     headers: {
                                         'API-KEY': 'd0317f6a-b584-4afe-8a81-d7b60d153a6b'
