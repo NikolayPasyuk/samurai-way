@@ -1,4 +1,6 @@
-import {AppActionsTypes} from './redux-store';
+import {AppActionsTypes, AppThunk} from './redux-store';
+import {Dispatch} from 'redux';
+import {userAPI} from '../api/api';
 
 export type PostType = {
     id: number
@@ -107,6 +109,14 @@ export const setUserProfile = (profile: ProfileType) => {
         profile
     } as const
 }
+
+export const getUserProfile = (userId: string): AppThunk => (dispatch) => {
+    userAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+}
+
 export const updateNewTextAC = (postText: string) => {
     return {
         type: 'UPDATE_NEW_TEXT',

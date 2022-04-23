@@ -1,4 +1,5 @@
-import {AppActionsTypes} from './redux-store';
+import {AppActionsTypes, AppThunk} from './redux-store';
+import {authAPI} from '../api/api';
 
 export type InitialStateType = typeof initialState
 
@@ -33,3 +34,12 @@ export const setAuthUserData = (userId: number, email: string, login: string) =>
     } as const
 }
 
+export const getAuthUserData = (): AppThunk => (dispatch) => {
+    authAPI.me()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                const {id, email, login} = response.data.data
+                dispatch(setAuthUserData(id, email, login))
+            }
+        })
+}
