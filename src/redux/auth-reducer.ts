@@ -1,6 +1,8 @@
+import {AppActionsTypes} from './redux-store';
+
 export type InitialStateType = typeof initialState
 
-type ActionsTypes =
+export type AuthActionsTypes =
     ReturnType<typeof setAuthUserData>
 
 const initialState = {
@@ -10,7 +12,7 @@ const initialState = {
     isAuth: false
 }
 
-export const authReducer = (state: InitialStateType = initialState, action: ActionsTypes)
+export const authReducer = (state: InitialStateType = initialState, action: AppActionsTypes)
     : InitialStateType => {
     switch (action.type) {
         case 'SET_USER_DATA':

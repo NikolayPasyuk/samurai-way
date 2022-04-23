@@ -1,5 +1,8 @@
-import {addPostAC,updateNewTextAC} from "./profile-reducer";
-import {sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
+import {addPostAC, ProfileActionsTypes, updateNewTextAC} from './profile-reducer';
+import {DialogsActionsTypes, sendMessageAC, updateNewMessageBodyAC} from './dialogs-reducer';
+import {AuthActionsTypes} from './auth-reducer';
+import {UsersActionsTypes} from './users-reducer';
+import {ThunkAction} from 'redux-thunk';
 
 type PotsType = {
     id: number
@@ -36,7 +39,7 @@ type StatePropsType = {
     sidebarPage: SidebarPageType
 }
 
-type StoreType = {
+export type StoreType = {
     _state: StatePropsType
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
@@ -73,7 +76,7 @@ const store: StoreType = {
                 {id: 5, name: 'Masha'},
                 {id: 6, name: 'Andrey'},
             ],
-            newMessageBody: ""
+            newMessageBody: ''
         },
         sidebarPage: {}
     },

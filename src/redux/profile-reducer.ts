@@ -1,3 +1,5 @@
+import {AppActionsTypes} from './redux-store';
+
 export type PostType = {
     id: number
     message: string
@@ -61,12 +63,12 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-type ActionsTypes =
+export type ProfileActionsTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewTextAC>
     | ReturnType<typeof setUserProfile>
 
-export const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
+export const profileReducer = (state: InitialStateType = initialState, action: AppActionsTypes): InitialStateType => {
 
     switch (action.type) {
         case 'ADD_POST':
