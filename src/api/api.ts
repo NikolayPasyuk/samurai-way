@@ -21,7 +21,7 @@ export const userAPI = {
     },
     getProfile(userId: string) {
         console.warn('Obsolete method. Please profileAPI object.')
-        return instance.get(`profile/` + userId)
+        return profileAPI.getProfile(userId)
     }
 }
 
