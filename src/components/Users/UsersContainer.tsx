@@ -6,9 +6,6 @@ import {Users} from './Users';
 import {Preloader} from '../common/preloader/Preloader';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
-import {getUserProfile} from '../../redux/profile-reducer';
-import {withRouter} from 'react-router-dom';
-import {ProfileContainer} from '../Profile/ProfileContainer';
 
 
 type mapStatePropsType = {
