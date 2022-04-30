@@ -6,9 +6,14 @@ type ProfileStatusPropsType = {}
 export const ProfileStatus = (props: any) => {
 
     return (
-        <div>
-
-        </div>
+        <>
+            <div>
+                <span>{props.status}</span>
+            </div>
+            <div>
+                <input value={props.status}/>
+            </div>
+        </>
     )
 }
 
