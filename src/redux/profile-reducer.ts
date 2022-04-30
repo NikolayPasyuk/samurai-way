@@ -1,5 +1,5 @@
 import {AppActionsTypes, AppThunk} from './redux-store';
-import {ProfileType, userAPI} from '../api/api';
+import {profileAPI, ProfileType, ResponseType, userAPI} from '../api/api';
 
 export type PostType = {
     id: number
@@ -34,7 +34,8 @@ const initialState = {
             small: '',
             large: ''
         }
-    } as ProfileType
+    } as ProfileType,
+    status: ''
 }
 
 export type InitialStateType = typeof initialState
@@ -43,11 +44,12 @@ export type ProfileActionsTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewTextAC>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setStatus>
 
 export const profileReducer = (state: InitialStateType = initialState, action: AppActionsTypes): InitialStateType => {
 
     switch (action.type) {
-        case 'ADD_POST':
+        case 'ADD_POST': {
             return {
                 ...state,
                 posts: [...state.posts, {
@@ -57,16 +59,25 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
                 }],
                 newPostText: ''
             }
-        case 'UPDATE_NEW_TEXT':
+        }
+        case 'UPDATE_NEW_TEXT': {
             return {
                 ...state,
                 newPostText: action.newText
             }
-        case 'SET_USER_PROFILE':
+        }
+        case 'SET_STATUS': {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
+        case 'SET_USER_PROFILE': {
             return {
                 ...state,
                 profile: action.profile
             }
+        }
         default:
             return state
     }
@@ -83,12 +94,11 @@ export const setUserProfile = (profile: ProfileType) => {
         profile
     } as const
 }
-
-export const getUserProfile = (userId: string): AppThunk => (dispatch) => {
-    userAPI.getProfile(userId)
-        .then(response => {
-            dispatch(setUserProfile(response.data))
-        })
+export const setStatus = (status: string) => {
+    return {
+        type: 'SET_STATUS',
+        status
+    } as const
 }
 
 export const updateNewTextAC = (postText: string) => {
@@ -97,3 +107,25 @@ export const updateNewTextAC = (postText: string) => {
         newText: postText
     } as const
 }
+
+export const getUserProfile = (userId: number): AppThunk => (dispatch) => {
+    userAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+}
+export const getStatus = (userId: number): AppThunk => (dispatch) => {
+    profileAPI.getStatus(userId)
+        .then(response => {
+            dispatch(setStatus(response.data))
+        })
+}
+export const updateStatus = (status: string): AppThunk => (dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatus(status))
+            }
+        })
+}
+

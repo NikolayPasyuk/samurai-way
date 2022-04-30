@@ -15,7 +15,8 @@ type DataType = {
     login: string
 }
 
-type ResponseType<D = {}> = {
+export type ResponseType<D = {}> = {
+    fieldsErrors: Array<string>
     resultCode: number
     messages: Array<string>
     data: D
@@ -74,21 +75,21 @@ export const userAPI = {
     unfollow(userId: number) {
         return instance.delete<ResponseType>(`follow/${userId}`)
     },
-    getProfile(userId: string) {
+    getProfile(userId: number) {
         console.warn('Obsolete method. Please profileAPI object.')
         return profileAPI.getProfile(userId)
     }
 }
 
 export const profileAPI = {
-    getProfile(userId: string) {
+    getProfile(userId: number) {
         return instance.get<ProfileType>(`profile/` + userId)
     },
     getStatus(userId: number) {
-        return instance.get(`status/` + userId)
+        return instance.get(`profile/status/` + userId)
     },
     updateStatus(status: string) {
-        return instance.put<ResponseType>(`status`, {status})
+        return instance.put<ResponseType>(`profile/status/`, {status})
     }
 }
 
