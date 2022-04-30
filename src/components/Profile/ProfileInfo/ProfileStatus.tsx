@@ -6,8 +6,12 @@ type ProfileStatusPropsType = {
 }
 
 export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
-    render() {
 
+    state = {
+        editMode: false
+    }
+
+    render() {
         return (
             <div>
                 <div>
