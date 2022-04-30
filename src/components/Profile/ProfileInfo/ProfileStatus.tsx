@@ -5,17 +5,19 @@ type ProfileStatusPropsType = {
     status: string
 }
 
-export const ProfileStatus = (props: ProfileStatusPropsType) => {
+export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
+    render() {
 
-    return (
-        <div>
+        return (
             <div>
-                <span>{props.status}</span>
+                <div>
+                    <span>{this.props.status}</span>
+                </div>
+                <div>
+                    <input value={this.props.status}/>
+                </div>
             </div>
-            <div>
-                <input value={props.status}/>
-            </div>
-        </div>
-    )
+        )
+    }
 }
 
