@@ -1,5 +1,4 @@
 import React from 'react';
-import s from './ProfileInfo.module.css'
 
 type ProfileStatusPropsType = {
     status: string
@@ -16,7 +15,9 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
             <div>
                 {!this.state.editMode &&
                     <div>
-                        <span>{this.props.status}</span>
+                        <span onDoubleClick={() => {
+                            alert('hey')
+                        }}>{this.props.status}</span>
                     </div>
                 }
                 {this.state.editMode &&
