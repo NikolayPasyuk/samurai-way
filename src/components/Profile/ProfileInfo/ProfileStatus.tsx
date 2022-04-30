@@ -17,6 +17,12 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         })
     }
 
+    deactivateEditMode() {
+        this.setState({
+            editMode: false
+        })
+    }
+
     render() {
         return (
             <div>
