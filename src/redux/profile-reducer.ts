@@ -1,6 +1,5 @@
 import {AppActionsTypes, AppThunk} from './redux-store';
-import {Dispatch} from 'redux';
-import {userAPI} from '../api/api';
+import {ProfileType, userAPI} from '../api/api';
 
 export type PostType = {
     id: number
@@ -8,31 +7,6 @@ export type PostType = {
     likesCount: number
 }
 
-export type ContactsType = {
-    facebook: string
-    website: null
-    vk: string
-    twitter: string,
-    instagram: string,
-    youtube: null,
-    github: string,
-    mainLink: null
-}
-
-export type PhotosType = {
-    small: string
-    large: string
-}
-
-export type ProfileType = {
-    aboutMe: string
-    contacts: ContactsType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: PhotosType
-}
 
 const initialState = {
     posts: [

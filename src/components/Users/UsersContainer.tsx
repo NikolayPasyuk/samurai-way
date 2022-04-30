@@ -1,15 +1,16 @@
 import React, {ComponentType} from 'react';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
-import {follow, getUsers, setCurrentPage, unfollow, UsersType} from '../../redux/users-reducer';
+import {follow, getUsers, setCurrentPage, unfollow} from '../../redux/users-reducer';
 import {Users} from './Users';
 import {Preloader} from '../common/preloader/Preloader';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
+import {UserType} from '../../api/api';
 
 
 type mapStatePropsType = {
-    users: Array<UsersType>
+    users: Array<UserType>
     pageSize: number
     totalUsersCount: number
     currentPage: number

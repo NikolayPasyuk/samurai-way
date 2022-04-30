@@ -1,22 +1,14 @@
-import {userAPI} from '../api/api';
+import {userAPI, UserType} from '../api/api';
 import {AppActionsTypes, AppThunk} from './redux-store';
 
-type UsersLocation = {
+/*type UsersLocation = {
     city: string
     country: string
 }
 
-export type UsersType = {
-    id: number
-    followed: boolean
-    name: string
-    status: string
+export type UsersDomainType = UserType & {
     location: UsersLocation
-    photos: {
-        small: null,
-        large: null
-    }
-}
+}*/
 
 export type InitialStateType = typeof initialState
 
@@ -31,7 +23,7 @@ export type UsersActionsTypes =
 
 
 const initialState = {
-    users: [] as Array<UsersType>,
+    users: [] as Array<UserType>,
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
@@ -66,6 +58,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: App
             return {
                 ...state, users: action.users
             }
+
         case 'SET_CURRENT_PAGE':
             return {
                 ...state,
@@ -105,7 +98,7 @@ export const unfollowSuccess = (userId: number) => {
         userId
     } as const
 }
-export const setUsers = (users: Array<UsersType>) => {
+export const setUsers = (users: Array<UserType>) => {
     return {
         type: 'SET_USERS',
         users
