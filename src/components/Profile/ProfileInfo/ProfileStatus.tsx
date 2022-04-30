@@ -10,14 +10,16 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         editMode: false
     }
 
+    activateEditMode = () => {
+        alert('hey')
+    }
+
     render() {
         return (
             <div>
                 {!this.state.editMode &&
                     <div>
-                        <span onDoubleClick={() => {
-                            alert('hey')
-                        }}>{this.props.status}</span>
+                        <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
                     </div>
                 }
                 {this.state.editMode &&
