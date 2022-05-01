@@ -1,4 +1,5 @@
 import React from 'react';
+import {reduxForm} from 'redux-form';
 
 const LoginForm = () => {
     return (
@@ -19,6 +20,7 @@ const LoginForm = () => {
     )
 };
 
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
 const Login = () => {
     return <div>
