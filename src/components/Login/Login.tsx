@@ -7,6 +7,9 @@ const Login = () => {
             <div>
                 <input placeholder={'Login'}/>
             </div>
+            <div>
+                <input placeholder={'Password'}/>
+            </div>
         </form>
     </div>
 };
