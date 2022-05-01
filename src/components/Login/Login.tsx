@@ -10,6 +10,9 @@ const Login = () => {
             <div>
                 <input placeholder={'Password'}/>
             </div>
+            <div>
+                <input type={'checkbox'}/>
+            </div>
         </form>
     </div>
 };
