@@ -30,6 +30,10 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         })
     }
 
+    componentDidUpdate() {
+        console.log('')
+    }
+
     render() {
         return (
             <div>
