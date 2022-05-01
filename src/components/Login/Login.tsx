@@ -13,6 +13,9 @@ const Login = () => {
             <div>
                 <input type={'checkbox'}/> remember me
             </div>
+            <div>
+                <button>Login</button>
+            </div>
         </form>
     </div>
 };
