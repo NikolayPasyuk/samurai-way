@@ -11,13 +11,13 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <input placeholder={'Login'}/>
+                <Field placeholder={'Login'} component={'input'}/>
             </div>
             <div>
-                <input placeholder={'Password'}/>
+                <Field placeholder={'Password'} component={'input'}/>
             </div>
             <div>
-                <input type={'checkbox'}/> remember me
+                <Field type={'checkbox'} component={'input'}/> remember me
             </div>
             <div>
                 <button>Login</button>
