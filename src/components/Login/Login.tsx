@@ -25,7 +25,7 @@ const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 const Login = () => {
     return <div>
         <h1>LOGIN</h1>
-        <LoginForm/>
+        <LoginReduxForm/>
     </div>
 };
 
