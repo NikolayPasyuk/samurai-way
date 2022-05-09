@@ -11,7 +11,6 @@ export type DialogsType = {
 export type DialogsPageType = {
     messages: Array<MessagesType>
     dialogs: Array<DialogsType>
-    newMessageBody: string
 }
 
 const initialState = {
@@ -29,27 +28,19 @@ const initialState = {
         {id: 4, name: 'Macks'},
         {id: 5, name: 'Masha'},
         {id: 6, name: 'Andrey'},
-    ] as Array<DialogsType>,
-    newMessageBody: ''
+    ] as Array<DialogsType>
 }
 
 export type InitialStateType = typeof initialState
-
-export type DialogsActionsTypes = ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageBodyAC>
+export type DialogsActionsTypes = ReturnType<typeof sendMessageAC>
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: AppActionsTypes): InitialStateType => {
 
     switch (action.type) {
-        case 'UPDATE_NEW_MESSAGE_BODY':
-            return {
-                ...state,
-                newMessageBody: action.body
-            }
         case 'SEND_MESSAGE':
-            const body = state.newMessageBody
+            const body = action.newMessageBody
             return {
                 ...state,
-                newMessageBody: '',
                 messages: [...state.messages, {id: 6, message: body}]
             }
         default:
@@ -57,14 +48,10 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: A
     }
 }
 
-export const sendMessageAC = () => {
+export const sendMessageAC = (newMessageBody: string) => {
     return {
-        type: 'SEND_MESSAGE'
+        type: 'SEND_MESSAGE',
+        newMessageBody
     } as const
 }
-export const updateNewMessageBodyAC = (postText: string) => {
-    return {
-        type: 'UPDATE_NEW_MESSAGE_BODY',
-        body: postText
-    } as const
-}
+

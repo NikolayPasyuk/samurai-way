@@ -1,38 +1,29 @@
-import {addPostAC, ProfileActionsTypes, updateNewTextAC} from './profile-reducer';
-import {DialogsActionsTypes, sendMessageAC, updateNewMessageBodyAC} from './dialogs-reducer';
-import {AuthActionsTypes} from './auth-reducer';
-import {UsersActionsTypes} from './users-reducer';
-import {ThunkAction} from 'redux-thunk';
+import {addPostAC} from './profile-reducer';
+import {sendMessageAC} from './dialogs-reducer';
 
 type PotsType = {
     id: number
     message: string
     likesCount: number
 }
-
 type DialogsType = {
     id: number
     name: string
 }
-
 type MessagesType = {
     id: number
     message: string
 }
-
 type DialogsPageType = {
     messages: Array<MessagesType>
     dialogs: Array<DialogsType>
     newMessageBody: string
 }
-
 type ProfilePageType = {
     posts: Array<PotsType>
     newPostText: string
 }
-
 type SidebarPageType = {}
-
 type StatePropsType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
@@ -47,9 +38,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewTextAC>
-    | ReturnType<typeof sendMessageAC> | ReturnType<typeof updateNewMessageBodyAC>
-
+type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof sendMessageAC>
 
 const store: StoreType = {
     _state: {
