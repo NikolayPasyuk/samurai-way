@@ -7,6 +7,7 @@ import {AuthActionsTypes, authReducer} from './auth-reducer';
 import thunk, {ThunkAction} from 'redux-thunk';
 import {StoreType} from './store';
 import {reducer as formReducer} from 'redux-form';
+import {FormAction} from 'redux-form/lib/actions';
 
 
 const rootReducer = combineReducers({
