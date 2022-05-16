@@ -28,7 +28,7 @@ const initialState = {
         lookingForAJob: false,
         lookingForAJobDescription: '',
         fullName: '',
-        userId: 0,
+        userId: 0 ,
         photos: {
             small: '',
             large: ''
@@ -74,7 +74,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
     }
 }
 
-export const addPostAC = (newPostText:string) => {
+export const addPostAC = (newPostText: string) => {
     return {
         type: 'ADD_POST',
         newPostText
