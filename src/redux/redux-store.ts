@@ -25,7 +25,7 @@ export type AppStateType = ReturnType<typeof rootReducer>
 export type AppStoreType = typeof store
 
 export type AppActionsTypes =
-    AuthActionsTypes
+    | AuthActionsTypes
     | DialogsActionsTypes
     | ProfileActionsTypes
     | UsersActionsTypes
