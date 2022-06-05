@@ -2,7 +2,7 @@ import React, {ComponentType} from 'react';
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import {Route, withRouter} from 'react-router-dom';
+import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -12,6 +12,8 @@ import {compose} from 'redux';
 import {initializeApp} from './redux/app-reducer';
 import {AppStateType} from './redux/redux-store';
 import {Preloader} from './components/common/preloader/Preloader';
+import './Reset.css';
+import Music from './components/Music/Music';
 
 type mapStatePropsType = {
     initialized: boolean
@@ -35,18 +37,25 @@ class App extends React.Component<AppPropsType> {
         }
 
         return (
-            <div className="app-wrapper">
+            <div>
                 <HeaderContainer/>
-                <Navbar/>
-                <div className="app-wrapper-content">
-                    <Route path="/dialogs"
-                           render={() => <DialogsContainer/>}/>
-                    <Route path="/profile/:userId?"
-                           render={() => <ProfileContainer/>}/>
-                    <Route path="/users"
-                           render={() => <UsersContainer/>}/>
-                    <Route path="/login"
-                           render={() => <LoginPage/>}/>
+                <div className="main-wrapper">
+                    <Navbar/>
+                    <div className="main-content">
+                        <Switch>
+                            <Route exact path="/" render={() => <Redirect to={'/profile'}/>}/>
+                            <Route path="/dialogs"
+                                   render={() => <DialogsContainer/>}/>
+                            <Route path="/profile/:userId?"
+                                   render={() => <ProfileContainer/>}/>
+                            <Route path="/users"
+                                   render={() => <UsersContainer/>}/>
+                            <Route path="/music"
+                                   render={() => <Music/>}/>
+                            <Route path="/login"
+                                   render={() => <LoginPage/>}/>
+                        </Switch>
+                    </div>
                 </div>
             </div>
         );

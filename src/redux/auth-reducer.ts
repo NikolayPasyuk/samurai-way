@@ -7,7 +7,7 @@ export type AuthActionsTypes =
     ReturnType<typeof setAuthUserData>
 
 const initialState = {
-    id: 0,
+    userId: null,
     email: '',
     login: '',
     isAuth: false
@@ -17,7 +17,7 @@ export const authReducer = (state: InitialStateType = initialState, action: AppA
     : InitialStateType => {
     switch (action.type) {
         case 'SET_USER_DATA':
-            return {
+            return <InitialStateType>{
                 ...state,
                 ...action.payload
             }
@@ -26,7 +26,7 @@ export const authReducer = (state: InitialStateType = initialState, action: AppA
     }
 }
 
-export const setAuthUserData = (userId: number, email: string, login: string, isAuth: boolean) => {
+export const setAuthUserData = (userId: number | null, email: string, login: string, isAuth: boolean) => {
     return {
         type: 'SET_USER_DATA',
         payload: {userId, email, login, isAuth}
@@ -60,7 +60,7 @@ export const logout = (): AppThunk => (dispatch) => {
     authAPI.logout()
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData(0, '', '', false))
+                dispatch(setAuthUserData(null, '', '', false))
             }
         })
 }

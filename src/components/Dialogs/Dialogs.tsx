@@ -15,19 +15,21 @@ function Dialogs(props: DialogsPropsType) {
     const addNewMessageChange = (values: FormDataType) => {
         props.onSendMessage(values.newMessageBody)
     }
-
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogItems}>
-                {dialogsElements}
+        <div className={s.container}>
+            <div className={s.dialogs}>
+                <div className={s.dialogsItems}>
+                    {dialogsElements}
+                </div>
             </div>
             <div className={s.messages}>
                 <div>{messagesElements}</div>
+                <div className={s.inputContainer}>
+                    <AddMessageForm onSubmit={addNewMessageChange}/>
+                </div>
             </div>
-            <AddMessageForm onSubmit={addNewMessageChange}/>
         </div>
     );
 }
-
 
 export default Dialogs;

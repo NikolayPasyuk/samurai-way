@@ -11,7 +11,6 @@ type ProfilePropsType = {
 }
 
 function Profile(props: ProfilePropsType) {
-
     return (
         <div>
             <ProfileInfo profile={props.profile}

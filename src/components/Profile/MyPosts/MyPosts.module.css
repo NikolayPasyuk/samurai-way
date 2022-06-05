@@ -1,7 +1,53 @@
-.postsBlock {
-    padding: 10px;
+.myPostsSection {
+    padding: 15px;
 }
 
-.posts {
-    margin-top: 10px;
+.myPostsTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.newPostSection {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.newPostCreateField {
+    min-width: 100%;
+    min-height: 70px;
+    background-color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    word-break: break-word;
+    resize: vertical;
+}
+
+.newPostCreateField:focus {
+    box-shadow: gold 0 0 10px 1px;
+}
+
+.sendPostBtn {
+    color: #fff;
+    font-size: 18px;
+    margin-top: 15px;
+    border: 1px solid transparent;
+    background-color: #DAA520;
+    padding: 5px 15px 5px 15px;
+    border-radius: 8px;
+}
+
+.sendPostBtn:hover {
+    background-color: #F4A460;
+    color: #fff;
+    text-shadow: #fff 0 0 4px;
+    box-shadow: #FFDEAD 0 0 15px;
+}
+
+@media (pointer: fine) {
+    .newPostCreateField {
+        min-width: 60%;
+    }
 }

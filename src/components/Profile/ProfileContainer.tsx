@@ -3,7 +3,7 @@ import Profile from './Profile';
 import {connect} from 'react-redux';
 import {getStatus, getUserProfile, updateStatus} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/redux-store';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {RouteComponentProps, useParams, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
 import {ProfileType} from '../../api/api';
 
@@ -14,7 +14,7 @@ type PathParamsType = {
 type MapStatePropsType = {
     profile: ProfileType
     status: string
-    authorizedUserId: number
+    authorizedUserId: number | null
     isAuth: boolean
 }
 
@@ -26,19 +26,21 @@ type MapDispatchPropsType = {
 export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
 type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 
-
 export class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-        let userId = +this.props.match.params.userId
+        let userId: number | null = Number(this.props.match.params.userId);
         if (!userId) {
             userId = this.props.authorizedUserId
-            /*if (userId === 0) {
+            debugger
+            if (!userId) {
                 this.props.history.push('/login')
-            }*/
+            }
         }
-        this.props.getUserProfile(userId)
-        this.props.getStatus(userId)
+        if (typeof userId === 'number') {
+            this.props.getUserProfile(userId);
+            this.props.getStatus(userId);
+        }
     }
 
     render() {
@@ -55,7 +57,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return ({
         profile: state.profilePage.profile,
         status: state.profilePage.status,
-        authorizedUserId: state.auth.id,
+        authorizedUserId: state.auth.userId,
         isAuth: state.auth.isAuth
     })
 }

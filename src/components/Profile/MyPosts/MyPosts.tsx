@@ -5,6 +5,7 @@ import {MyPostsPropsType} from './MyPostsContainer';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControls/FormsControls';
+import Button from '../../common/Button/Button';
 
 function MyPosts(props: MyPostsPropsType) {
 
@@ -17,10 +18,12 @@ function MyPosts(props: MyPostsPropsType) {
     }
 
     return (
-        <div className={s.postsBlock}>
-            <h3>My posts</h3>
-            <AddNewPostFormRedux onSubmit={onAddPost}/>
-            <div className={s.posts}>
+        <div className={s.myPostsSection}>
+            <h3 className={s.myPostsTitle}>My posts</h3>
+            <div className={s.newPostSection}>
+                <AddNewPostFormRedux onSubmit={onAddPost}/>
+            </div>
+            <div>
                 {postsElements}
             </div>
         </div>
@@ -40,12 +43,17 @@ const AddNewPostForm: React.FC<InjectedFormProps<FormDataNewPostType>>
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={Textarea} name="newPostText" placeholder={'Post message'}
+                <Field className={s.newPostCreateField}
+                       component={Textarea} name="newPostText"
+                       placeholder={'Post message'}
                        validate={[required, maxLength10]}
                 />
             </div>
             <div>
-                <button>Add post</button>
+                <Button type={'submit'}
+                        className={s.sendPostBtn}>
+                    Send
+                </Button>
             </div>
         </form>
     )

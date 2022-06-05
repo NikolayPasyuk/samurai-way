@@ -113,4 +113,3 @@ export const updateStatus = (status: string): AppThunk => (dispatch) => {
             }
         })
 }
-

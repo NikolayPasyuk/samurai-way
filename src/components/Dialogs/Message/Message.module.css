@@ -1,0 +1,10 @@
+.message {
+    display: inline-block;
+    color: #000;
+    font-size: 16px;
+    word-break: break-word;
+    margin-bottom: 25px;
+    background-color: #ddd;
+    padding: 10px 12px;
+    border-radius: 8px;
+}

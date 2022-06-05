@@ -6,6 +6,7 @@ import {Users} from './Users';
 import {Preloader} from '../common/preloader/Preloader';
 import {compose} from 'redux';
 import {UserType} from '../../api/api';
+import stylePreloader from '../common/preloader/Preloader.module.css';
 import {
     getCurrentPage,
     getFollowingInProgress,
@@ -45,7 +46,9 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
+            {this.props.isFetching ? <div className={stylePreloader.absolutePreloaderContainer}>
+                <Preloader/>
+            </div> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
@@ -58,17 +61,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
         </>
     }
 }
-
-/*const mapStateToProps = (state: AppStateType): mapStatePropsType => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
-    }
-}*/
 
 const mapStateToProps = (state: AppStateType): mapStatePropsType => {
     return {

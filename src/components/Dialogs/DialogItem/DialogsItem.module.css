@@ -1,0 +1,9 @@
+.dialog {
+    font-size: 22px;
+    color: aquamarine;
+    text-decoration: none;
+}
+
+.active {
+    color: gold;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from '../../common/preloader/Preloader';
-import {ProfileStatus} from './ProfileStatus';
+import {ProfileStatus} from './ProfileStatus/ProfileStatus';
 import {ProfileType} from '../../../api/api';
+import AnonymousUserPhoto from '../../../assets/images/user.png'
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -17,14 +18,21 @@ function ProfileInfo(props: ProfileInfoPropsType) {
 
     return (
         <div>
-            {/*<div>
-                <img
-                    src="https://image.shutterstock.com/image-photo/aerial-view-nemiga-minsk-belarus-260nw-1282455937.jpg"
-                    alt=""/>
-            </div>*/}
-            <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            <div className={s.userInfoSection}>
+                <div className={s.userAvatarSection}>
+                    <img
+                        className={s.userAvatar}
+                        src={props.profile.photos.large || AnonymousUserPhoto}
+                        alt={props.profile.fullName + " user avatar"}
+                    />
+                </div>
+                <div className={s.editModeContainer}>
+                    <div className={s.statusContainer}>
+                        <ProfileStatus status={props.status}
+                                       updateStatus={props.updateStatus}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     )

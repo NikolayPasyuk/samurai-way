@@ -1,5 +1,5 @@
 import React from 'react';
-import s from '../Dialogs.module.css'
+import s from './Message.module.css'
 
 type MessageType = {
     message: string
@@ -7,7 +7,9 @@ type MessageType = {
 
 function Message(props: MessageType) {
     return (
-        <div className={s.message}>{props.message}</div>
+        <div>
+            <span className={s.message}>{props.message}</span>
+        </div>
     )
 }
 

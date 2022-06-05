@@ -1,9 +1,32 @@
-
-.item {
-    color: greenyellow;
+.post {
+    display: flex;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
-.item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 30px;
+
+.avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.textBlock {
+    max-width: 60%;
+    margin-left: 20px;
+}
+
+.userMessage {
+    background-color: #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    word-wrap: break-word;
+}
+
+.likesWrapper {
+    margin-top: 8px;
+}
+
+.likesCount {
+    color: #042d5e;
+    font-weight: 700;
 }

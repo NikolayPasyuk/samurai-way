@@ -1,15 +1,6 @@
 import {userAPI, UserType} from '../api/api';
 import {AppActionsTypes, AppThunk} from './redux-store';
 
-/*type UsersLocation = {
-    city: string
-    country: string
-}
-
-export type UsersDomainType = UserType & {
-    location: UsersLocation
-}*/
-
 export type InitialStateType = typeof initialState
 
 export type UsersActionsTypes =
