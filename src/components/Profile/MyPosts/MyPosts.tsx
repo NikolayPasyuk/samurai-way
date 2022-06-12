@@ -7,11 +7,11 @@ import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControls/FormsControls';
 import Button from '../../common/Button/Button';
 
-function MyPosts(props: MyPostsPropsType) {
-
+const MyPosts = React.memo((props: MyPostsPropsType) => {
+    console.log('RENDER')
     const postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    // let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const onAddPost = (values: FormDataNewPostType) => {
         props.addPost(values.newPostText)
@@ -28,7 +28,7 @@ function MyPosts(props: MyPostsPropsType) {
             </div>
         </div>
     )
-}
+});
 
 
 export type FormDataNewPostType = {
