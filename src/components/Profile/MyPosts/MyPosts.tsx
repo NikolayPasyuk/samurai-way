@@ -8,8 +8,7 @@ import {Textarea} from '../../common/FormsControls/FormsControls';
 import Button from '../../common/Button/Button';
 
 const MyPosts = React.memo((props: MyPostsPropsType) => {
-    console.log('RENDER')
-    const postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    const postsElements = [...props.posts].reverse().map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
     // let newPostElement = React.createRef<HTMLTextAreaElement>();
 
