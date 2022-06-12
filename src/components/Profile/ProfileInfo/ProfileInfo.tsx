@@ -4,6 +4,7 @@ import {Preloader} from '../../common/preloader/Preloader';
 import {ProfileStatus} from './ProfileStatus/ProfileStatus';
 import {ProfileType} from '../../../api/api';
 import AnonymousUserPhoto from '../../../assets/images/user.png'
+import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks';
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -28,7 +29,7 @@ function ProfileInfo(props: ProfileInfoPropsType) {
                 </div>
                 <div className={s.editModeContainer}>
                     <div className={s.statusContainer}>
-                        <ProfileStatus status={props.status}
+                        <ProfileStatusWithHooks status={props.status}
                                        updateStatus={props.updateStatus}
                         />
                     </div>
