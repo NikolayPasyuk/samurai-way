@@ -1,4 +1,4 @@
-import {AppActionsTypes, AppThunk} from './redux-store';
+import {AppThunk} from './redux-store';
 import {profileAPI, ProfileType, userAPI} from '../api/api';
 
 export type PostType = {
@@ -28,7 +28,7 @@ const initialState = {
         lookingForAJob: false,
         lookingForAJobDescription: '',
         fullName: '',
-        userId: 0 ,
+        userId: 0,
         photos: {
             small: '',
             large: ''
@@ -43,8 +43,9 @@ export type ProfileActionsTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof deletePost>
 
-export const profileReducer = (state: InitialStateType = initialState, action: AppActionsTypes): InitialStateType => {
+export const profileReducer = (state: InitialStateType = initialState, action: ProfileActionsTypes): InitialStateType => {
 
     switch (action.type) {
         case 'ADD_POST': {
@@ -69,6 +70,12 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
                 profile: action.profile
             }
         }
+        case 'DELETE_POST': {
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId),
+            }
+        }
         default:
             return state
     }
@@ -90,6 +97,12 @@ export const setStatus = (status: string) => {
     return {
         type: 'SET_STATUS',
         status
+    } as const
+}
+export const deletePost = (postId: number) => {
+    return {
+        type: 'DELETE_POST',
+        postId
     } as const
 }
 
