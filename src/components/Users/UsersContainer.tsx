@@ -37,18 +37,21 @@ export type UsersPropsType = mapStatePropsType & mapDispatchPropsType
 
 class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.requestUsers(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.requestUsers(pageNumber, pageSize)
     }
 
     render() {
         return <>
-            {this.props.isFetching ? <div className={stylePreloader.absolutePreloaderContainer}>
-                <Preloader/>
-            </div> : null}
+            {this.props.isFetching ?
+                <div className={stylePreloader.absolutePreloaderContainer}>
+                    <Preloader/>
+                </div> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}

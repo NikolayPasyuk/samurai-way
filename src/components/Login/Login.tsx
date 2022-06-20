@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Input} from '../common/FormsControls/FormsControls';
+import {InjectedFormProps, reduxForm} from 'redux-form';
+import {createField, Input} from '../common/FormsControls/FormsControls';
 import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
 import {login} from '../../redux/auth-reducer';
@@ -24,38 +24,18 @@ type MapDispatchPropsType = {
 export type LoginPropsType = MapStatePropsType & MapDispatchPropsType
 
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}
+        <form onSubmit={handleSubmit}
               className={s.formContainer}
         >
-            <div>
-                <Field
-                    className={`${s.field} ${s.input}`}
-                    placeholder={'Email'}
-                    name={'email'}
-                    validate={[required]}
-                    component={Input}/>
-            </div>
-            <div>
-                <Field
-                    className={`${s.field} ${s.input}`}
-                    placeholder={'Password'}
-                    name={'password'}
-                    type={'password'}
-                    validate={[required]}
-                    component={Input}/>
-            </div>
-            <div>
-                <Field className={s.field}
-                       type={'checkbox'}
-                       name={'rememberMe'}
-                       component={Input}/>
-                remember me
-            </div>
-            {props.error && <div className={styles.formSummaryError}>
-                {props.error}
+            {createField('Email', 'email', [required], Input, {}, '', s.field, s.input)}
+            {createField('Password', 'password', [required], Input, {type: 'password'}, '', s.field, s.input)}
+            {createField('Password', 'rememberMe', [], Input, {type: 'checkbox'}, 'Remember me', s.field, '')}
+
+            {error && <div className={styles.formSummaryError}>
+                {error}
             </div>}
             <div className={s.field}>
                 <Button type={'submit'} className={s.button}>
@@ -78,8 +58,9 @@ const Login = (props: LoginPropsType) => {
 
     return <div className={s.container}>
         <div className={s.textContainer}>
-            <p className={s.text}>To log in get registered <a href="https://social-network.samuraijs.com/"
-                                                              target="_blank">here</a></p>
+            <p className={s.text}>To log in get registered <a
+                href="https://social-network.samuraijs.com/"
+                target="_blank">here</a></p>
             <p className={s.text}>Or use common test account credentials:</p>
             <p className={s.text}>Email: free@samuraijs.com</p>
             <p className={s.text}>Password: free</p>

@@ -7,7 +7,6 @@ import {AuthActionsTypes, authReducer} from './auth-reducer';
 import thunk, {ThunkAction} from 'redux-thunk';
 import {StoreType} from './store';
 import {reducer as formReducer} from 'redux-form';
-import {FormAction} from 'redux-form/lib/actions';
 import {AppInitializedActionsTypes, appReducer} from './app-reducer';
 
 
@@ -32,7 +31,6 @@ export type AppActionsTypes =
     | AppInitializedActionsTypes
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, StoreType, unknown, AppActionsTypes>
-
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
 

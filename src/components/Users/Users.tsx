@@ -16,8 +16,14 @@ export type UsersPropsType = {
 }
 
 export let Users: React.FC<UsersPropsType> = ({
-                                                  totalUsersCount, pageSize, currentPage, onPageChanged,
-                                                  users, follow, unfollow, followingInProgress
+                                                  totalUsersCount,
+                                                  pageSize,
+                                                  currentPage,
+                                                  onPageChanged,
+                                                  users,
+                                                  follow,
+                                                  unfollow,
+                                                  followingInProgress
                                               }) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
@@ -34,7 +40,9 @@ export let Users: React.FC<UsersPropsType> = ({
     }
 
     return <div className={s.wrapper}>
-        <Pagination totalItemsCount={totalUsersCount} currentPage={currentPage} onPageChanged={onPageChanged}
+        <Pagination totalItemsCount={totalUsersCount}
+                    currentPage={currentPage}
+                    onPageChanged={onPageChanged}
                     pageSize={pageSize}
                     portionSize={portionSizeCondition()}
         />

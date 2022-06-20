@@ -33,34 +33,28 @@ export const setAuthUserData = (userId: number | null, email: string, login: str
     } as const
 }
 
-export const getAuthUserData = (): AppThunk => (dispatch) => {
-    return authAPI.me()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                const {id, email, login} = response.data.data
-                dispatch(setAuthUserData(id, email, login, true))
-            }
-        })
+export const getAuthUserData = (): AppThunk => async (dispatch) => {
+    const response = await authAPI.me()
+    if (response.data.resultCode === 0) {
+        const {id, email, login} = response.data.data
+        dispatch(setAuthUserData(id, email, login, true))
+    }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
-    authAPI.login(email, password, rememberMe)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthUserData())
-            } else {
-                const message = response.data.messages.length > 0 ? response.data.messages[0]
-                    : 'Some error'
-                dispatch(stopSubmit('login', {email: message}))
-            }
-        })
+export const login = (email: string, password: string, rememberMe: boolean): AppThunk => async (dispatch) => {
+    const response = await authAPI.login(email, password, rememberMe)
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else {
+        const message = response.data.messages.length > 0 ? response.data.messages[0]
+            : 'Some error'
+        dispatch(stopSubmit('login', {email: message}))
+    }
 }
 
-export const logout = (): AppThunk => (dispatch) => {
-    authAPI.logout()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData(null, '', '', false))
-            }
-        })
+export const logout = (): AppThunk => async (dispatch) => {
+    const response = await authAPI.logout()
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, '', '', false))
+    }
 }

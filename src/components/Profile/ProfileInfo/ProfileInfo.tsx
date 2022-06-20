@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from '../../common/preloader/Preloader';
-import {ProfileStatus} from './ProfileStatus/ProfileStatus';
 import {ProfileType} from '../../../api/api';
 import AnonymousUserPhoto from '../../../assets/images/user.png'
 import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks';
@@ -12,7 +11,7 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void
 }
 
-function ProfileInfo(props: ProfileInfoPropsType) {
+const ProfileInfo = (props: ProfileInfoPropsType) => {
     if (!props.profile) {
         return <Preloader/>
     }
@@ -24,13 +23,13 @@ function ProfileInfo(props: ProfileInfoPropsType) {
                     <img
                         className={s.userAvatar}
                         src={props.profile.photos.large || AnonymousUserPhoto}
-                        alt={props.profile.fullName + " user avatar"}
+                        alt={props.profile.fullName + ' user avatar'}
                     />
                 </div>
                 <div className={s.editModeContainer}>
                     <div className={s.statusContainer}>
                         <ProfileStatusWithHooks status={props.status}
-                                       updateStatus={props.updateStatus}
+                                                updateStatus={props.updateStatus}
                         />
                     </div>
                 </div>

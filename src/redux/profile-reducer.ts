@@ -106,23 +106,17 @@ export const deletePost = (postId: number) => {
     } as const
 }
 
-export const getUserProfile = (userId: number): AppThunk => (dispatch) => {
-    userAPI.getProfile(userId)
-        .then(response => {
-            dispatch(setUserProfile(response.data))
-        })
+export const getUserProfile = (userId: number): AppThunk => async (dispatch) => {
+    const response = await userAPI.getProfile(userId)
+    dispatch(setUserProfile(response.data))
 }
-export const getStatus = (userId: number): AppThunk => (dispatch) => {
-    profileAPI.getStatus(userId)
-        .then(response => {
-            dispatch(setStatus(response.data))
-        })
+export const getStatus = (userId: number): AppThunk => async (dispatch) => {
+    const response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response.data))
 }
-export const updateStatus = (status: string): AppThunk => (dispatch) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setStatus(status))
-            }
-        })
+export const updateStatus = (status: string): AppThunk => async (dispatch) => {
+    const response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status))
+    }
 }
