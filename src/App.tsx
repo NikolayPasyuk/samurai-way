@@ -3,17 +3,19 @@ import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import {HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import LoginPage from './components/Login/Login';
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
 import {initializeApp} from './redux/app-reducer';
 import store, {AppStateType} from './redux/redux-store';
 import {Preloader} from './components/common/preloader/Preloader';
 import './Reset.css';
-import Music from './components/Music/Music';
+import {withSuspense} from './hoc/withSuspense';
+
+const DialogsContainer = React.lazy(() => import ('./components/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import ('./components/Profile/ProfileContainer'));
+const UsersContainer = React.lazy(() => import ('./components/Users/UsersContainer'));
+const Music = React.lazy(() => import ('./components/Music/Music'));
+const LoginPage = React.lazy(() => import ('./components/Login/Login'));
 
 type mapStatePropsType = {
     initialized: boolean
@@ -46,15 +48,15 @@ class App extends React.Component<AppPropsType> {
                             <Route exact path="/"
                                    render={() => <Redirect to={'/profile'}/>}/>
                             <Route path="/dialogs"
-                                   render={() => <DialogsContainer/>}/>
+                                   render={withSuspense(DialogsContainer)}/>
                             <Route path="/profile/:userId?"
-                                   render={() => <ProfileContainer/>}/>
+                                   render={withSuspense(ProfileContainer)}/>
                             <Route path="/users"
-                                   render={() => <UsersContainer/>}/>
+                                   render={withSuspense(UsersContainer)}/>
                             <Route path="/music"
-                                   render={() => <Music/>}/>
+                                   render={withSuspense(Music)}/>
                             <Route path="/login"
-                                   render={() => <LoginPage/>}/>
+                                   render={withSuspense(LoginPage)}/>
                         </Switch>
                     </div>
                 </div>

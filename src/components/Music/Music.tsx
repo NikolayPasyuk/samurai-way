@@ -5,7 +5,7 @@ const Music = () => {
     return (
         <div className={s.container}>
             <div className={s.iframeWrapper}>
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Eix6U8Ax6nw"
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/HUne-XBFqpk"
                         title="YouTube video player" frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
