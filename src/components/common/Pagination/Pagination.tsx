@@ -11,7 +11,7 @@ type PaginationPropsType = {
     portionSize: number
 }
 
-export let Pagination: React.FC<PaginationPropsType> = ({
+export const Pagination: React.FC<PaginationPropsType> = ({
                                                             totalItemsCount,
                                                             pageSize,
                                                             currentPage,
