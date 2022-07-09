@@ -42,28 +42,25 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
     }
 
     render() {
-        console.log('render')
-        return (
-            <div>
-                {!this.state.editMode &&
-                    <div>
-                        <span className={s.status}
-                              onDoubleClick={this.activateEditMode}>{this.props.status
-                            || 'Status is not set'}
-                        </span>
-                    </div>
-                }
-                {this.state.editMode &&
-                    <div>
-                        <input className={s.editStatus}
-                               onChange={this.onStatusChange}
-                               autoFocus={true}
-                               onBlur={this.deactivateEditMode}
-                               value={this.state.status}/>
-                    </div>
-                }
-            </div>
-        )
+        return <div>
+            {!this.state.editMode ?
+                <div>
+                    <span className={s.status}
+                          onClick={this.activateEditMode}>{this.props.status || "Status is not set"}
+                    </span>
+                </div>
+                :
+                <div>
+                    <input autoFocus
+                           onChange={this.onStatusChange}
+                           onBlur={this.deactivateEditMode}
+                           value={this.state.status}
+                           className={s.editStatus}
+                    >
+                    </input>
+                </div>
+            }
+        </div>
     }
 }
 

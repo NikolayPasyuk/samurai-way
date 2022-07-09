@@ -2,15 +2,15 @@ import React, {ComponentType} from 'react';
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import LoginPage from './components/Login/Login';
-import {connect} from 'react-redux';
+import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
 import {initializeApp} from './redux/app-reducer';
-import {AppStateType} from './redux/redux-store';
+import store, {AppStateType} from './redux/redux-store';
 import {Preloader} from './components/common/preloader/Preloader';
 import './Reset.css';
 import Music from './components/Music/Music';
@@ -43,7 +43,8 @@ class App extends React.Component<AppPropsType> {
                     <Navbar/>
                     <div className="main-content">
                         <Switch>
-                            <Route exact path="/" render={() => <Redirect to={'/profile'}/>}/>
+                            <Route exact path="/"
+                                   render={() => <Redirect to={'/profile'}/>}/>
                             <Route path="/dialogs"
                                    render={() => <DialogsContainer/>}/>
                             <Route path="/profile/:userId?"
@@ -68,6 +69,16 @@ const mapStateToProps = (state: AppStateType): mapStatePropsType => {
     }
 }
 
-export default compose<ComponentType>(
+let AppContainer = compose<ComponentType>(
     withRouter,
-    connect(mapStateToProps, {initializeApp}))(App);
+    connect<mapStatePropsType, mapDispatchPropsType, {}, AppStateType>(mapStateToProps, {initializeApp}))(App);
+
+const SocialNetworkApp = () => {
+    return <HashRouter>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </HashRouter>
+}
+
+export default SocialNetworkApp;
