@@ -6,7 +6,7 @@ import {HashRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom'
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
 import {initializeApp} from './redux/app-reducer';
-import store, {AppStateType} from './redux/redux-store';
+import store, {RootStateType} from './redux/redux-store';
 import {Preloader} from './components/common/preloader/Preloader';
 import './Reset.css';
 import {withSuspense} from './hoc/withSuspense';
@@ -65,7 +65,7 @@ class App extends React.Component<AppPropsType> {
     }
 }
 
-const mapStateToProps = (state: AppStateType): mapStatePropsType => {
+const mapStateToProps = (state: RootStateType): mapStatePropsType => {
     return {
         initialized: state.app.initialized
     }
@@ -73,7 +73,7 @@ const mapStateToProps = (state: AppStateType): mapStatePropsType => {
 
 let AppContainer = compose<ComponentType>(
     withRouter,
-    connect<mapStatePropsType, mapDispatchPropsType, {}, AppStateType>(mapStateToProps, {initializeApp}))(App);
+    connect<mapStatePropsType, mapDispatchPropsType, {}, RootStateType>(mapStateToProps, {initializeApp}))(App);
 
 const SocialNetworkApp = () => {
     return <HashRouter>

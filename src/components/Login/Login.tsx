@@ -4,7 +4,7 @@ import {createField, Input} from '../common/FormsControls/FormsControls';
 import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
 import {login} from '../../redux/auth-reducer';
-import {AppStateType} from '../../redux/redux-store';
+import {RootStateType} from '../../redux/redux-store';
 import {Redirect} from 'react-router-dom';
 import styles from './../common/FormsControls/FormsControls.module.css'
 import s from './Login.module.css'
@@ -69,7 +69,7 @@ const Login = (props: LoginPropsType) => {
     </div>
 };
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+const mapStateToProps = (state: RootStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth
 })
 

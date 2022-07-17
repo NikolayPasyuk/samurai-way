@@ -1,16 +1,25 @@
 import React, {ChangeEvent} from 'react';
 import s from './ProfileStatus.module.css'
 
-type ProfileStatusPropsType = {
-    status: string
+type MapDispatchToPropsType = {
     updateStatus: (status: string) => void
 }
 
-export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
+type MapStateToPropsType = {
+    status: string
+    isOwner: boolean
+}
+
+export type ProfileStatusPropsType = MapStateToPropsType & MapDispatchToPropsType;
+
+type StateType = { editMode: boolean, status: string, isOwner: boolean };
+
+export class ProfileStatus extends React.Component<ProfileStatusPropsType, StateType> {
 
     state = {
         editMode: false,
-        status: this.props.status
+        status: this.props.status,
+        isOwner: this.props.isOwner
     }
 
     activateEditMode = () => {
@@ -38,7 +47,6 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                 status: this.props.status
             })
         }
-        console.log('componentDidUpdate')
     }
 
     render() {
@@ -46,7 +54,7 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
             {!this.state.editMode ?
                 <div>
                     <span className={s.status}
-                          onClick={this.activateEditMode}>{this.props.status || "Status is not set"}
+                          onClick={this.activateEditMode}>{this.props.status || 'Status is not set'}
                     </span>
                 </div>
                 :

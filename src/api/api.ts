@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {ProfileType} from '../redux/profile-reducer';
 
 
 const instance = axios.create({
@@ -39,31 +40,6 @@ export type UsersType = {
     error: null | string
 }
 
-export type ContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string | null
-    youtube: string | null
-    mainLink: string | null
-}
-
-type PhotosType = {
-    small: string
-    large: string
-}
-
-export type ProfileType = {
-    userId: number
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ContactsType
-    photos: PhotosType
-}
-
 export const userAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get<UsersType>(`users?page=${currentPage}&count=${pageSize}`)
@@ -90,7 +66,21 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put<ResponseType>(`profile/status/`, {status})
-    }
+    },
+    savePhoto(photoFile: File) {
+        let formData = new FormData();
+        formData.append("image", photoFile);
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then(response => response.data);
+    },
+    saveProfile(profile: ProfileType) {
+        return instance.put(`profile`, profile)
+            .then(response => response.data);
+    },
 }
 
 export const authAPI = {

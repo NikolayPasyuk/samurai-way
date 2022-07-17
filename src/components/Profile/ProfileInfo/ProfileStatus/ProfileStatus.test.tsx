@@ -5,14 +5,18 @@ import {updateStatus} from '../../../../redux/profile-reducer';
 describe('ProfileStatus component', () => {
     test('status from props should be in the state', () => {
         const component = create(<ProfileStatus status={'test text'}
-                                                updateStatus={updateStatus}/>);
+                                                updateStatus={updateStatus}
+                                                isOwner={false}
+        />);
         const instance = component.root;
         expect(instance.props.status).toBe('test text');
     });
 
     test('after creation span should be displayed', () => {
         const component = create(<ProfileStatus status={'test text'}
-                                                updateStatus={updateStatus}/>);
+                                                updateStatus={updateStatus}
+                                                isOwner={false}
+        />);
         const instance = component.root;
         let span = instance.findByType('span');
         expect(span).not.toBeNull();
@@ -20,7 +24,9 @@ describe('ProfileStatus component', () => {
 
     test('after creation input shouldn\'t be displayed', () => {
         const component = create(<ProfileStatus status={'test text'}
-                                                updateStatus={updateStatus}/>);
+                                                updateStatus={updateStatus}
+                                                isOwner={false}
+        />);
         const instance = component.root;
         expect(() => {
             let input = instance.findByType('input');
@@ -29,7 +35,9 @@ describe('ProfileStatus component', () => {
 
     test('after creation span should be contains correct text', () => {
         const component = create(<ProfileStatus status={'test text'}
-                                                updateStatus={updateStatus}/>);
+                                                updateStatus={updateStatus}
+                                                isOwner={false}
+        />);
         const instance = component.root;
         let span = instance.findByType('span');
         expect(span.children[0]).toBe('test text');
@@ -37,7 +45,9 @@ describe('ProfileStatus component', () => {
 
     test('input should be displayed in edit mode instead of span', () => {
         const component = create(<ProfileStatus status={'test text'}
-                                                updateStatus={updateStatus}/>);
+                                                updateStatus={updateStatus}
+                                                isOwner={true}
+        />);
         const instance = component.root;
         let span = instance.findByType('span');
         span.props.onClick();
@@ -48,7 +58,9 @@ describe('ProfileStatus component', () => {
     test('callback should be called', () => {
         const mockCallback = jest.fn();
         const component = create(<ProfileStatus status={'test text'}
-                                                updateStatus={mockCallback}/>);
+                                                updateStatus={mockCallback}
+                                                isOwner={false}
+        />);
         const instance = component.getInstance();
         // @ts-ignore
         instance.deactivateEditMode();

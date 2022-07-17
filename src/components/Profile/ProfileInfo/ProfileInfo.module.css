@@ -1,8 +1,100 @@
+.button {
+    color: #fff;
+    font-size: 18px;
+    background-color: #DAA520;
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.button:hover {
+    background-color: #F4A460;
+    color: #fff;
+    text-shadow: #fff 0 0 4px;
+    box-shadow: #FFDEAD 0 0 15px;
+}
+
 .userInfoSection {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
     padding: 15px;
+}
+
+.editModeContainer {
+    width: 100%;
+}
+
+.editFormContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.editModeContacts {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.editModeInput {
+    display: inline-block;
+    min-width: 90%;
+    min-height: 33px;
+    width: 123%;
+    margin-bottom: 5px;
+    font-size: 18px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    line-height: 1.3;
+    resize: vertical;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+textarea::placeholder {
+    color: #aaa;
+}
+
+.userDescription {
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userName {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.userInfoText {
+    font-size: 18px;
+    line-height: 1.3;
+    white-space: nowrap;
+    word-break: break-word;
+}
+
+.flexContainer {
+    display: flex;
+    align-items: baseline;
+}
+
+.contactsSection {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.contactText {
+    margin-left: 20px;
+    font-size: 18px;
+    line-height: 1.3;
 }
 
 .userAvatarSection {
@@ -18,17 +110,55 @@
     border-radius: 50%;
 }
 
-.editModeContainer {
-    width: 100%;
+.inputFileButtonContainer {
+    margin-top: 15px;
 }
 
-.statusContainer {
-    text-align: start;
-    margin-bottom: 15px;
+.inputFile {
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
+.inputFile + label {
+      display: inline-block;
+      cursor: pointer;
+      color: #fff;
+      font-size: 18px;
+      white-space: nowrap;
+      background-color: #DAA520;
+      padding: 8px 12px;
+      border-radius: 8px;
+  }
+.inputFile:focus + label,
+.inputFile + label:hover {
+      background-color: #F4A460;
+      color: #fff;
+      text-shadow: #fff 0 0 4px;
+      box-shadow:  #FFDEAD 0 0 15px;
+  }
+
+.statusContainer {
+    text-align: center;
+    margin: 15px 0;
+}
+
 @media (pointer: fine) {
+    .backgroundImage {
+        border-radius: 8px 8px 0 0;
+    }
+
     .userInfoSection {
         flex-direction: row;
+    }
+
+    .userDescription {
+        max-width: none;
+        display: block;
+        flex-direction: row;
+        align-items: start;
+        font-size: 17px;
+        color: #111;
     }
 
     .editModeContainer {

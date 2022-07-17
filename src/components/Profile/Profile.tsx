@@ -1,23 +1,28 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
-import {ProfileType} from '../../api/api';
+import {ProfilePropsType} from './ProfileContainer';
 
-
-type ProfilePropsType = {
-    profile: ProfileType
-    status: string
-    updateStatus: (status: string) => void
-}
-
-function Profile(props: ProfilePropsType) {
+export const Profile: React.FC<ProfilePropsType> = ({
+                                                        profile,
+                                                        isOwner,
+                                                        status,
+                                                        updateStatus,
+                                                        savePhoto,
+                                                        saveProfile
+                                                    }) => {
     return (
         <div>
-            <ProfileInfo profile={props.profile}
-                         status={props.status}
-                         updateStatus={props.updateStatus}
+            <ProfileInfo profile={profile}
+                         isOwner={isOwner}
+                         status={status}
+                         updateStatus={updateStatus}
+                         savePhoto={savePhoto}
+                         saveProfile={saveProfile}
             />
-            <MyPostsContainer/>
+            <MyPostsContainer isOwner={isOwner}
+                              userAvatar={profile?.photos.small}
+            />
         </div>
     )
 }
