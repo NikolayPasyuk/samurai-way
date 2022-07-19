@@ -120,23 +120,25 @@ textarea::placeholder {
     position: absolute;
     z-index: -1;
 }
+
 .inputFile + label {
-      display: inline-block;
-      cursor: pointer;
-      color: #fff;
-      font-size: 18px;
-      white-space: nowrap;
-      background-color: #DAA520;
-      padding: 8px 12px;
-      border-radius: 8px;
-  }
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    white-space: nowrap;
+    background-color: #DAA520;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
 .inputFile:focus + label,
 .inputFile + label:hover {
-      background-color: #F4A460;
-      color: #fff;
-      text-shadow: #fff 0 0 4px;
-      box-shadow:  #FFDEAD 0 0 15px;
-  }
+    background-color: #F4A460;
+    color: #fff;
+    text-shadow: #fff 0 0 4px;
+    box-shadow: #FFDEAD 0 0 15px;
+}
 
 .statusContainer {
     text-align: center;
@@ -144,9 +146,6 @@ textarea::placeholder {
 }
 
 @media (pointer: fine) {
-    .backgroundImage {
-        border-radius: 8px 8px 0 0;
-    }
 
     .userInfoSection {
         flex-direction: row;

@@ -29,6 +29,7 @@ export type AppActionsTypes =
     | UsersActionsTypes
     | AppInitializedActionsTypes
 
+
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown, AppActionsTypes>
 
 // @ts-ignore

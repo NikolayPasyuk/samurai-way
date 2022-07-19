@@ -10,7 +10,7 @@ export type ProfileDataFormPropsType = {
     profile: ProfileType
 }
 
-const ProfileDataForm: ComponentType<ProfileDataFormPropsType & InjectedFormProps<ProfileType, ProfileDataFormPropsType, string>> =
+const ProfileDataForm: ComponentType<ProfileDataFormPropsType & InjectedFormProps<ProfileType, ProfileDataFormPropsType>> =
     ({handleSubmit, profile, error}) => {
         return <form onSubmit={handleSubmit} className={s.editFormContainer}>
             <div>

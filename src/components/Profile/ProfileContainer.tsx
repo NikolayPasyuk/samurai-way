@@ -69,10 +69,8 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
             <Profile {...this.props}
                      profile={this.props.profile}
                      isOwner={
-                         // if profile id is missing in the address bar
                          this.props.match.params.userId === undefined
                              ? true
-                             // else compare current user id with authenticated user id
                              : +(this.props.match.params.userId) === this.props.currentUser
                      }
                      status={this.props.status}

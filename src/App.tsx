@@ -15,6 +15,7 @@ const DialogsContainer = React.lazy(() => import ('./components/Dialogs/DialogsC
 const ProfileContainer = React.lazy(() => import ('./components/Profile/ProfileContainer'));
 const UsersContainer = React.lazy(() => import ('./components/Users/UsersContainer'));
 const Music = React.lazy(() => import ('./components/Music/Music'));
+const SettingsContainer = React.lazy(() => import ('./components/Settings/SettingsContainer'));
 const LoginPage = React.lazy(() => import ('./components/Login/Login'));
 
 type mapStatePropsType = {
@@ -55,6 +56,8 @@ class App extends React.Component<AppPropsType> {
                                    render={withSuspense(UsersContainer)}/>
                             <Route path="/music"
                                    render={withSuspense(Music)}/>
+                            <Route path="/settings"
+                                   render={withSuspense(SettingsContainer)}/>
                             <Route path="/login"
                                    render={withSuspense(LoginPage)}/>
                         </Switch>

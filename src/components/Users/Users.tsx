@@ -13,6 +13,7 @@ export type UsersPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     followingInProgress: Array<number>
+    isOwner: number | null
 }
 
 export let Users: React.FC<UsersPropsType> = ({
@@ -23,7 +24,8 @@ export let Users: React.FC<UsersPropsType> = ({
                                                   users,
                                                   follow,
                                                   unfollow,
-                                                  followingInProgress
+                                                  followingInProgress,
+                                                  isOwner
                                               }) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
@@ -53,6 +55,7 @@ export let Users: React.FC<UsersPropsType> = ({
                                      follow={follow}
                                      unfollow={unfollow}
                                      followingInProgress={followingInProgress}
+                                     isOwner={isOwner}
                     />,
                 )
             }

@@ -1,4 +1,4 @@
-import {AppThunk} from './redux-store';
+import {AppThunk, RootStateType} from './redux-store';
 import {profileAPI, userAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
 
@@ -165,7 +165,7 @@ export const savePhoto = (photoFile: File): AppThunk => async (dispatch) => {
 };
 
 export const saveProfile = (profile: ProfileType): AppThunk => {
-    return async (dispatch, getState: () => any) => {
+    return async (dispatch, getState: () => RootStateType) => {
         try {
             const userId = getState().auth.userId;
             const response = await profileAPI.saveProfile(profile);

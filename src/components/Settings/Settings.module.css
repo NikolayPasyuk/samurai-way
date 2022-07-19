@@ -1,0 +1,33 @@
+.buttonsContainer {
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.withoutAuthorizationContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.withoutAuthorizationText {
+    font-size: 18px;
+}
+
+.withoutAuthorizationButton {
+    margin-top: 10px;
+}
+
+.button {
+    display: inline-block;
+    color: #fff;
+    font-size: 20px;
+    background-color:  #DAA520;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #F4A460;
+    color: #fff;
+    text-shadow: #fff 0 0 4px;
+    box-shadow: #FFDEAD 0 0 15px;
+}
