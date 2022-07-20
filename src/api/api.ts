@@ -52,7 +52,6 @@ export const userAPI = {
         return instance.delete<ResponseType>(`follow/${userId}`)
     },
     getProfile(userId: number) {
-        console.warn('Obsolete method. Please profileAPI object.')
         return profileAPI.getProfile(userId)
     }
 }
@@ -73,7 +72,7 @@ export const profileAPI = {
     },
     savePhoto(photoFile: File) {
         let formData = new FormData();
-        formData.append("image", photoFile);
+        formData.append('image', photoFile);
         return instance.put(`profile/photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -91,10 +90,21 @@ export const authAPI = {
     me() {
         return instance.get<ResponseType<DataType>>(`auth/me`)
     },
-    login(email: string, password: string, rememberMe: boolean = false) {
-        return instance.post<ResponseType<{ userId: number }>>(`auth/login`, {email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean = false, captcha: null | string) {
+        return instance.post<ResponseType<{ userId: number }>>(`auth/login`, {
+            email,
+            password,
+            rememberMe,
+            captcha
+        })
     },
     logout() {
         return instance.delete<ResponseType>(`auth/login`)
+    }
+}
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`)
+            .then(response => response.data);
     }
 }
