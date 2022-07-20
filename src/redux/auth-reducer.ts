@@ -56,10 +56,14 @@ export const setProfileSmallPhotoSuccess = (profileSmallPhoto: string | null) =>
 } as const);
 
 export const getAuthUserData = (): AppThunk => async (dispatch) => {
-    const response = await authAPI.me()
-    if (response.data.resultCode === 0) {
-        const {id, email, login} = response.data.data
-        dispatch(setAuthUserData(id, email, login, true))
+    try {
+        const response = await authAPI.me()
+        if (response.data.resultCode === 0) {
+            const {id, email, login} = response.data.data
+            dispatch(setAuthUserData(id, email, login, true))
+        }
+    } catch (error) {
+        console.log(`Error getting auth user data. ${error}`);
     }
 }
 export const setProfileSmallPhoto = (userId: number | null): AppThunk => {
@@ -76,17 +80,21 @@ export const setProfileSmallPhoto = (userId: number | null): AppThunk => {
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string): AppThunk => async (dispatch) => {
-    const response = await authAPI.login(email, password, rememberMe, captcha)
-    if (response.data.resultCode === 0) {
-        dispatch(getAuthUserData())
-    } else {
-        if (response.data.resultCode === 10) {
-            await dispatch(getCaptchaUrl());
+    try {
+        const response = await authAPI.login(email, password, rememberMe, captcha)
+        if (response.data.resultCode === 0) {
+            dispatch(getAuthUserData())
         } else {
-            const message = response.data.messages.length > 0 ? response.data.messages[0]
-                : 'Some error'
-            dispatch(stopSubmit('login', {email: message}))
+            if (response.data.resultCode === 10) {
+                await dispatch(getCaptchaUrl());
+            } else {
+                const message = response.data.messages.length > 0 ? response.data.messages[0]
+                    : 'Some error'
+                dispatch(stopSubmit('login', {email: message}))
+            }
         }
+    } catch (error) {
+        console.log(`Error login. ${error}`);
     }
 }
 export const getCaptchaUrl = (): AppThunk => {
@@ -101,8 +109,12 @@ export const getCaptchaUrl = (): AppThunk => {
     }
 }
 export const logout = (): AppThunk => async (dispatch) => {
-    const response = await authAPI.logout()
-    if (response.data.resultCode === 0) {
-        dispatch(setAuthUserData(null, '', '', false))
+    try {
+        const response = await authAPI.logout()
+        if (response.data.resultCode === 0) {
+            dispatch(setAuthUserData(null, '', '', false))
+        }
+    } catch (error) {
+        console.log(`Error logout. ${error}`);
     }
 }

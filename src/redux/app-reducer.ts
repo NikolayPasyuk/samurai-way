@@ -29,10 +29,13 @@ export const initializedSuccess = () => {
 }
 
 export const initializeApp = (): AppThunk => (dispatch) => {
-    let promise = dispatch(getAuthUserData())
-    Promise.all([promise])
-        .then(() => {
-            dispatch(initializedSuccess())
-        })
+    try {
+        const promise = dispatch(getAuthUserData())
+        Promise.all([promise])
+            .then(() => {
+                dispatch(initializedSuccess())
+            })
+    } catch (error) {
+        console.log(`Error initialization app. ${error}`);
+    }
 }
-
