@@ -1,6 +1,5 @@
 import {userAPI, UserType} from '../api/api';
 import {AppActionsTypes, AppThunk} from './redux-store';
-import {Dispatch} from 'redux';
 
 export type InitialStateType = typeof initialState
 

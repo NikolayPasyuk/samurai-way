@@ -5,7 +5,7 @@ import SocialNetworkApp from './App';
 
 ReactDOM.render(
     <SocialNetworkApp/>,
-    document.getElementById("root"),
+    document.getElementById('root'),
 );
 
 

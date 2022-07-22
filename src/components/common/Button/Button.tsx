@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
 
 // type of button props. Children in which the name of the button is stored is already described there
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
